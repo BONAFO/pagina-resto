@@ -17,7 +17,7 @@ export default function Footer() {
         </Link>
 
         <p className="text-xs text-[#c5b8a3]">
-          © {new Date().getFullYear()} · Una experiencia para disfrutar.
+          © 2026 · Una experiencia para disfrutar.
         </p>
 
         <Link
