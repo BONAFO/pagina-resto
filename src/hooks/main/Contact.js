@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useRoutesHook from "../Routes";
 
 export default function useContactHook() {
@@ -59,6 +59,23 @@ export default function useContactHook() {
   const contactItemClass =
     "mt-2 block cursor-pointer text-sm text-[#e8decc] transition hover:text-[#dfbd72]";
 
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/Argentina/Buenos_Aires",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(new Date());
+
+    const year = parts.find((part) => part.type === "year").value;
+    const month = parts.find((part) => part.type === "month").value;
+    const day = parts.find((part) => part.type === "day").value;
+
+    setMinDate(`${year}-${month}-${day}`);
+  }, []);
+
   return {
     business,
     form,
@@ -79,5 +96,7 @@ export default function useContactHook() {
     isEvent,
     phoneRequired,
     contactItemClass,
+    minDate,
+    setMinDate,
   };
 }

@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -20,9 +19,8 @@ export default function Contact() {
     openTestModal,
     phoneRequired,
     setModalOpen,
+    minDate,
   } = useContactHook();
-
- 
 
   return (
     <main className="min-h-screen bg-[#f0e7d7] text-[#33251a]">
@@ -76,9 +74,10 @@ export default function Contact() {
             <div className="my-8 h-px bg-[#5d452d]" />
 
             <div className="space-y-7">
-              {/* Dirección: Google Maps sigue funcionando */}
+              {/* Dirección */}
               <div className="flex gap-4">
                 <span className="text-xl text-[#dfbd72]">⌖</span>
+
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-[#b99551]">
                     Dirección
@@ -105,9 +104,10 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Horarios: abre el modal */}
+              {/* Horarios */}
               <div className="flex gap-4">
                 <span className="text-xl text-[#dfbd72]">◷</span>
+
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-[#b99551]">
                     Horarios
@@ -123,9 +123,10 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Correo: abre el modal */}
+              {/* Correo electrónico */}
               <div className="flex gap-4">
                 <span className="text-xl text-[#dfbd72]">✉</span>
+
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-[#b99551]">
                     Correo electrónico
@@ -141,9 +142,10 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Teléfono: abre el modal */}
+              {/* Teléfono */}
               <div className="flex gap-4">
                 <span className="text-xl text-[#dfbd72]">☎</span>
+
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-[#b99551]">
                     Teléfono y reservas
@@ -180,9 +182,7 @@ export default function Contact() {
                 </h2>
               </div>
 
-              <span className="hidden text-2xl text-[#b99551] sm:block">
-                ✦
-              </span>
+              <span className="hidden text-2xl text-[#b99551] sm:block">✦</span>
             </div>
 
             <p className="mt-4 text-sm leading-7 text-[#756653]">
@@ -190,6 +190,7 @@ export default function Contact() {
             </p>
 
             <form onSubmit={handleFormSubmit} className="mt-8 space-y-6">
+              {/* Nombre y correo */}
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label
@@ -233,6 +234,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Teléfono y motivo */}
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label
@@ -279,6 +281,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Fecha y cantidad de personas */}
               {isReservation && (
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
@@ -293,10 +296,11 @@ export default function Contact() {
                       id="date"
                       name="date"
                       type="date"
-                      min={new Date().toLocaleDateString("en-CA")}
+                      min={minDate}
                       value={form.date}
                       onChange={handleChange}
                       required
+                      lang="es-AR"
                       className={inputClass}
                     />
                   </div>
@@ -328,6 +332,7 @@ export default function Contact() {
                 </div>
               )}
 
+              {/* Mensaje */}
               <div>
                 <label
                   htmlFor="message"
@@ -359,8 +364,8 @@ export default function Contact() {
               </button>
 
               <p className="text-xs leading-5 text-[#8b7a65]">
-                Los campos marcados con * son obligatorios. Este formulario
-                es una demostración y no envía datos reales.
+                Los campos marcados con * son obligatorios. Este formulario es
+                una demostración y no envía datos reales.
               </p>
             </form>
           </div>
